@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/AR-js-org/AR.js/aframe/build/aframe-ar.js"></script>
+    <script src="https://unpkg.com/aframe-iframe-component/dist/aframe-iframe-component.min.js"></script>
+  </head>
+  <body style="margin: 0; overflow: hidden;">
+    
+    <a-scene embedded arjs>
+       
+      <!-- Marcador personalizado -->
+      <a-marker type="pattern" url="assets/markers/manos.patt">
+        <!-- Plano con iframe de YouTube -->
+      
+        <a-video id="videoAR" src="assets/videos/poeta.mp4" position="0 0 0.5" rotation="-90 0 0" width="3" height="2" autoplay="0" muted="1"> </a-video>
+       <!-- Botón Play --> <a-box id="btnPlay" position="0 0 1"  height="0.5" width="1" color="green" scale="1 1 1" rotation="-90 0 0"></a-box> <a-text value="Play"  rotation="-90 0 0" position="0 0 -0.9" scale="3 3 3"></a-text> 
+        <!-- Botón Pause --> <a-box id="btnPause" position="1 0 0.7" depth="0.01" height="0.5" width="1" color="red"></a-box> <a-text value="Pause" position="10 10 0.7" scale="1 1 1"></a-text>
+      </a-marker>
+      <a-entity camera></a-entity>
+    </a-scene>
+    <script> const videoEl = document.querySelector("#videoAR").components.material.material.map.image; const btnPlay = document.querySelector("#btnPlay"); const btnPause = document.querySelector("#btnPause"); btnPlay.addEventListener("click", () => { videoEl.play(); console.log("play");}); btnPause.addEventListener("click", () => { videoEl.pause(); console.log("pause");}); </script>
+  </body>
+</html>
